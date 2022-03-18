@@ -1,4 +1,3 @@
-
 <template>
     <header>
       <div class="name">Fichat</div>
@@ -6,11 +5,13 @@
     </header>
 </template>
 <script>
-
 export default {
+  
     setup() {
         
     },
 }
 </script>
-st
+<style>
+
+</style>
