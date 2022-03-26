@@ -14,10 +14,32 @@
 </template>
 
 <script> 
+
+import 'firebase/database'
 import VueHeader from './components/VueHeader.vue'
 import VueLogin from'./components/VueLogin.vue'
 import VueChatView from './components/VueChatView.vue'
-import { ref, onMounted, reactive } from '@vue/reactivity'
+import {ref, reactive, onUpdated } from 'vue'
+
+import { initializeApp } from 'firebase/app';
+import { getDatabase, onValue } from "firebase/database";
+import { ref as rtdbref, set,update, push } from "firebase/database";
+
+// TODO: Replace with your app's Firebase project configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyD9YTBMsst9g0D-JmZ7UEfenXgwdlQW9ts",
+  authDomain: "fichat-4baa0.firebaseapp.com",
+  databaseURL: "https://fichat-4baa0-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "fichat-4baa0",
+  storageBucket: "fichat-4baa0.appspot.com",
+  messagingSenderId: "228653004164",
+  appId: "1:228653004164:web:6cb4e95e1a03abc5d359d1"
+};
+
+const app = initializeApp(firebaseConfig);
+
+// Get a reference to the database service
+const database = getDatabase(app);
 
 export default {
   name: "App",
@@ -29,15 +51,13 @@ export default {
   },
   
   setup() {
-
-
     const login = ref('');
-    const message = ref('');
-    console.log(login.value);
+    const inputMessage = ref('');
+    const database = getDatabase();
 
     const state = reactive({
       name:"",
-      messages:[  ]
+      messages:[]
     }),
 
     userLogin = (value) =>{
@@ -48,17 +68,48 @@ export default {
         login.value=''
       }
     },
+
     send = (value)=>{
-      message.value = value
-      console.log(message.value)
+      inputMessage.value = value
+      console.log(inputMessage.value)
+      if (inputMessage.value != '' || inputMessage.value != null){
+        return;
+      }
+      const message ={
+        username: state.name,
+        content: inputMessage.value
+      }
+      console.log(message)
+      push(rtdbref(database,'messages'),message)
+      inputMessage.value=''
     }
-    
+
+
+    onUpdated(()=>{
+      const database = getDatabase(app);
+      const messg = rtdbref(database,'messages')
+
+      onValue(messg, (snapshot)=>{
+        const data = snapshot.val();
+        let messages = [];
+
+        Object.keys(data).forEach(key =>{
+          messages.push({
+            id: key,
+            username:data[key].username,
+            content:data[key].content
+          });
+        });
+        
+        state.messages = messages;
+      })
+    });
     return{
       login,
       userLogin,
       state,
       send,
-      message,
+      inputMessage,
     }
   }
 }

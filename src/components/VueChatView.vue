@@ -1,17 +1,16 @@
 <template>
     <div class="pg_Chat">
     <div class="cht_Container">
-      <div class="msgs">
-        <div class="msg_Container1">
+      <div class="msgs"
+       >
+        <div 
+          v-for="message in state.messages"
+          :key="message.key"
+          :class="(message.username == state.username ? 'msg_Container2' : 'msg_Container1')">
           <div class="msg1">
-          <div class="name">Barra</div>
-          <div class="txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, quis.</div>
+          <div class="name">{{message.username}}</div>
+          <div class="txt">{{message.content}}</div>
         </div>
-        </div>
-        <div class="msg_Container2">
-           <div class="msg2">
-           <div class="txt"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam repudiandae similique quidem maiores, hic et voluptatem vel velit praesentium sed officia, quas aliquid ducimus suscipit nisi quasi iste tempora excepturi! Sequi quasi aliquid vel natus, temporibus autem culpa nisi reiciendis cumque et itaque harum nostrum laudantium, quas accusantium voluptatibus quisquam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, quis.</div>
-          </div>
         </div>
       </div>
       <div class="msg_Input">
@@ -35,9 +34,13 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
+props:{
+   state: Object
+},
+
   components: {
   },
-    setup() {
+    setup(props) {
         const msg = ref('')
         return{
           msg,
