@@ -10,14 +10,18 @@
         </div>
         <div class="msg_Container2">
            <div class="msg2">
-           <div class="name">Barra</div> -->
            <div class="txt"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam repudiandae similique quidem maiores, hic et voluptatem vel velit praesentium sed officia, quas aliquid ducimus suscipit nisi quasi iste tempora excepturi! Sequi quasi aliquid vel natus, temporibus autem culpa nisi reiciendis cumque et itaque harum nostrum laudantium, quas accusantium voluptatibus quisquam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, quis.</div>
           </div>
         </div>
       </div>
       <div class="msg_Input">
-        <form action="">
-          <input class="msg_Text" type="text" placeholder="Message...">
+        <form 
+          @submit.prevent="$emit('send',msg)">
+          <input 
+            v-model="msg"
+            class="msg_Text" 
+            type="text" 
+            placeholder="Message...">
           <label>
             <img src="../assets/paper-plane.svg" alt="" srcset="">
             <input class="msg_Send" type="submit" value="">
@@ -29,11 +33,16 @@
   </div> 
 </template>
 <script>
+import { ref } from '@vue/reactivity'
 export default {
   components: {
   },
     setup() {
-        
+        const msg = ref('')
+        return{
+          msg,
+        }
     },
+    
 }
 </script>

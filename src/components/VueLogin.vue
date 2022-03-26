@@ -5,7 +5,7 @@
           @submit.prevent="$emit('update',inp)"
           >
             <input 
-            v-model="inp"
+              v-model="inp"
               class="name_Login" 
               type="text" name="" id="" 
               placeholder="Enter your name..."
