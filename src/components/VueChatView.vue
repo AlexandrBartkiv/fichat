@@ -1,19 +1,21 @@
 <template>
     <div class="pg_Chat">
     <div class="cht_Container">
-      <div class="msgs"
-       >
-        <div 
-          v-for="message in state.messages"
+      <div class="msgs">
+      <div 
+          v-for="message in q.messages"
           :key="message.key"
-          :class="(message.username == state.username ? 'msg_Container2' : 'msg_Container1')">
+          :class="(message.username == q.name ? 'msg_Container2' : 'msg_Container1')">
           <div class="msg1">
-          <div class="name">{{message.username}}</div>
-          <div class="txt">{{message.content}}</div>
-        </div>
+            <div 
+              class="name"
+              v-if="message.username != q.name"
+              >{{message.username}}</div>
+            <div class="txt">{{message.content}}</div>
         </div>
       </div>
-      <div class="msg_Input">
+    </div>
+      <div class="msg_Input"> 
         <form 
           @submit.prevent="$emit('send',msg)">
           <input 
@@ -32,20 +34,23 @@
   </div> 
 </template>
 <script>
-import { ref } from '@vue/reactivity'
+import { ref, inject, reactive } from 'vue'
 export default {
-props:{
-   state: Object
-},
 
   components: {
   },
-    setup(props) {
-        const msg = ref('')
+    setup() {
+        const msg = ref('');
+        const{state, onMounted}=inject('state')
+        
+        
+        let q = reactive();
+        q = state;
         return{
           msg,
+          q
         }
     },
-    
+
 }
 </script>

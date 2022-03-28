@@ -19,11 +19,11 @@ import 'firebase/database'
 import VueHeader from './components/VueHeader.vue'
 import VueLogin from'./components/VueLogin.vue'
 import VueChatView from './components/VueChatView.vue'
-import {ref, reactive, onUpdated } from 'vue'
+import {ref, reactive, onBeforeMount, provide, onMounted, onUpdated } from 'vue'
 
 import { initializeApp } from 'firebase/app';
 import { getDatabase, onValue } from "firebase/database";
-import { ref as rtdbref, set,update, push } from "firebase/database";
+import { ref as rtdbref, push } from "firebase/database";
 
 // TODO: Replace with your app's Firebase project configuration
 const firebaseConfig = {
@@ -44,6 +44,7 @@ const database = getDatabase(app);
 export default {
   name: "App",
 
+
   components: {
     VueHeader,
     VueLogin,
@@ -54,7 +55,7 @@ export default {
     const login = ref('');
     const inputMessage = ref('');
     const database = getDatabase();
-
+    const q = '123';
     const state = reactive({
       name:"",
       messages:[]
@@ -68,27 +69,23 @@ export default {
         login.value=''
       }
     },
-
     send = (value)=>{
       inputMessage.value = value
       console.log(inputMessage.value)
-      if (inputMessage.value != '' || inputMessage.value != null){
-        return;
+      if (inputMessage.value === '' || inputMessage.value === null){
+        return
       }
       const message ={
         username: state.name,
         content: inputMessage.value
       }
-      console.log(message)
       push(rtdbref(database,'messages'),message)
       inputMessage.value=''
-    }
-
-
-    onUpdated(()=>{
+    } 
+    onMounted(()=>{
       const database = getDatabase(app);
       const messg = rtdbref(database,'messages')
-
+      
       onValue(messg, (snapshot)=>{
         const data = snapshot.val();
         let messages = [];
@@ -100,16 +97,22 @@ export default {
             content:data[key].content
           });
         });
-        
         state.messages = messages;
+        
+        console.log(state)
       })
     });
-    return{
+    console.log(state)
+    provide('state',{
+      state,
+      onMounted 
+    })
+    return {
       login,
       userLogin,
-      state,
       send,
       inputMessage,
+      state,
     }
   }
 }

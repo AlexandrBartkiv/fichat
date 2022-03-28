@@ -196,7 +196,7 @@ header > img {
           justify-content: end;
 }
 
-.pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg2 {
+.pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg1 {
   background-color: #64fa70;
   height: -webkit-max-content;
   height: -moz-max-content;
@@ -207,15 +207,15 @@ header > img {
   max-width: 400px;
 }
 
-.pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg2 > .name {
+.pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg1 > .name {
   color: #0be903;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
 }
 
-.pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg2 > .txt {
-  width: 100 .pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg2 > .txt;
+.pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg1 > .txt {
+  width: 100 .pg_Chat > .cht_Container > .msgs > .msg_Container2 > .msg1 > .txt;
 }
 
 .pg_Chat > .cht_Container > .msg_Input {
