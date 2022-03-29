@@ -1,6 +1,7 @@
 <template>
-<div>
-  <VueHeader></VueHeader>
+<div class="cont">
+  <VueHeader
+    @logout="logout"></VueHeader>
   <VueLogin 
     @update="userLogin"
     v-if="state.name === '' || state.name === null "
@@ -56,6 +57,8 @@ export default {
     const inputMessage = ref('');
     const database = getDatabase();
     const q = '123';
+
+    
     const state = reactive({
       name:"",
       messages:[]
@@ -107,12 +110,16 @@ export default {
       state,
       onMounted 
     })
+    const logout =()=>{
+      state.name = '';
+    }
     return {
       login,
       userLogin,
       send,
       inputMessage,
       state,
+      logout
     }
   }
 }

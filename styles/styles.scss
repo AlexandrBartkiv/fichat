@@ -5,14 +5,35 @@ $back: rgb(204, 255, 208);
 $alert: rgb(216, 54, 54);
 $font:'Open Sans', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Teko:wght@300&display=swap');
- header{
+html{
+    height:100%;
+}
+body{
+    height: 100%;
+}
+.cont{
+    height: 100%;
+}
+#app{
+    height: 100%;
+}
+header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
-    height: 10vh;
     background-color: $primary;
+    height: 10%;
     > .name{
+        display: flex;
+        align-items: center;
+        font-family: 'Teko', sans-serif;
+        font-size: 4rem;
+        padding-left: 1rem;
+        width: max-content;
+        height: max-content;
+        color: $secondary;
+    }
+    > .welcome{
         display: flex;
         align-items: center;
         font-family: 'Teko', sans-serif;
@@ -26,13 +47,16 @@ $font:'Open Sans', sans-serif;
         filter: invert(95%);
         height: 2rem;
         padding-right: 1rem;
+        &:hover{
+            height: 2.2rem;
+        }
     }
 }
 .pg_Login{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 90%;
     background-color: $back;
     > .form_Login{
         display: flex;
@@ -88,7 +112,7 @@ $font:'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 90%;
     background-color: $back;
     >.cht_Container{
         display: flex;
@@ -101,6 +125,8 @@ $font:'Open Sans', sans-serif;
             flex-direction: column;
             height: 100%;
             width: 100%;
+            overflow: scroll;
+            overflow-x: hidden;
             >.msg_Container1{
                 >.msg1{
                     background-color: $secondary;
@@ -158,6 +184,7 @@ $font:'Open Sans', sans-serif;
                 }
                 .msg_Send{
                     visibility: hidden;
+                    width: 20px;
                 }
                 img{
                     height:1.5rem;
@@ -168,3 +195,21 @@ $font:'Open Sans', sans-serif;
         }
     }
 }
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(171, 235, 166);
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }

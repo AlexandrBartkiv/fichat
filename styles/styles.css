@@ -1,4 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Teko:wght@300&display=swap");
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.cont {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9,12 +25,30 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100vw;
-  height: 10vh;
   background-color: #64fa70;
+  height: 10%;
 }
 
 header > .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Teko', sans-serif;
+  font-size: 4rem;
+  padding-left: 1rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  color: white;
+}
+
+header > .welcome {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -40,6 +74,10 @@ header > img {
   padding-right: 1rem;
 }
 
+header > img:hover {
+  height: 2.2rem;
+}
+
 .pg_Login {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,7 +89,7 @@ header > img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  height: 90%;
   background-color: #ccffd0;
 }
 
@@ -136,7 +174,7 @@ header > img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  height: 90%;
   background-color: #ccffd0;
 }
 
@@ -163,6 +201,8 @@ header > img {
           flex-direction: column;
   height: 100%;
   width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .pg_Chat > .cht_Container > .msgs > .msg_Container1 > .msg1 {
@@ -253,11 +293,31 @@ header > img {
 
 .pg_Chat > .cht_Container > .msg_Input > form .msg_Send {
   visibility: hidden;
+  width: 20px;
 }
 
 .pg_Chat > .cht_Container > .msg_Input > form img {
   height: 1.5rem;
   -webkit-filter: invert(40%);
           filter: invert(40%);
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #abeba6;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
 /*# sourceMappingURL=styles.css.map */
